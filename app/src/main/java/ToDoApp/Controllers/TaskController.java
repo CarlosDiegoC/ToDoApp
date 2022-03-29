@@ -60,13 +60,14 @@ public class TaskController {
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(sql);
             statement.setInt(1, task.getIdProject());
-            statement.setString(1, task.getName());
-            statement.setString(1, task.getDescription());
-            statement.setString(1, task.getNotes());
-            statement.setBoolean(1, task.getIsCompleted());
-            statement.setDate(1, new Date(task.getDeadline().getTime()));
-            statement.setDate(1, new Date(task.getCreatedAt().getTime()));
-            statement.setDate(1, new Date(task.getUpdatedAt().getTime()));
+            statement.setString(2, task.getName());
+            statement.setString(3, task.getDescription());
+            statement.setString(4, task.getNotes());
+            statement.setBoolean(5, task.getIsCompleted());
+            statement.setDate(6, new Date(task.getDeadline().getTime()));
+            statement.setDate(7, new Date(task.getCreatedAt().getTime()));
+            statement.setDate(8, new Date(task.getUpdatedAt().getTime()));
+            statement.setInt(9, task.getId());
             statement.execute();
             
         }catch(Exception ex){
@@ -79,7 +80,7 @@ public class TaskController {
     
     public void removeById(int taskId) throws SQLException{
         
-        String sql = "DELETE FORM tasks WHERE id = ?";
+        String sql = "DELETE FROM tasks WHERE id = ?";
         Connection connection = null;
         PreparedStatement statement = null;
         
@@ -108,6 +109,7 @@ public class TaskController {
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(sql);
             statement.setInt(1, idProject);
+            
             resultSet = statement.executeQuery();
             while(resultSet.next()){
                 Task task = new Task();
@@ -123,7 +125,7 @@ public class TaskController {
                 taskList.add(task);
             }
         }catch(Exception ex){
-            throw new RuntimeException ("Erro ao deletar a tarefa" + ex.getMessage(), ex);
+            throw new RuntimeException ("Erro ao buscar as tarefa" + ex.getMessage(), ex);
         }finally{
             ConnectionFactory.closeConnection(connection, statement, resultSet);
         }    
