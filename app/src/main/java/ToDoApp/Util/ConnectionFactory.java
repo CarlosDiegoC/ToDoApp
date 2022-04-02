@@ -14,14 +14,14 @@ public class ConnectionFactory {
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String URL = "jdbc:mysql://localhost:3306/todoapp";
     public static final String USER = "root";
-    public static final String PASS = "";
+    public static final String PASS = "1234567";
     
     public static Connection getConnection(){
         try {
             Class.forName(DRIVER);
             return DriverManager.getConnection(URL, USER, PASS);
             } catch (Exception ex){
-                throw new RuntimeException("Erro na conexão com o banco de dados", ex);
+                throw new RuntimeException("Erro na conexï¿½o com o banco de dados", ex);
             }
     }
     
@@ -31,7 +31,7 @@ public class ConnectionFactory {
                 connection.close();
             }
         } catch (Exception ex){
-            throw new RuntimeException("Erro ao fechar a conexão com o bando de dados", ex);
+            throw new RuntimeException("Erro ao fechar a conexï¿½o com o bando de dados", ex);
         }
     }
     
@@ -44,7 +44,7 @@ public class ConnectionFactory {
                 statement.close();
             }
         } catch (Exception ex){
-            throw new RuntimeException("Erro ao fechar a conexão com o bando de dados", ex);
+            throw new RuntimeException("Erro ao fechar a conexï¿½o com o bando de dados", ex);
         }
     }
     
@@ -60,7 +60,7 @@ public class ConnectionFactory {
                 resultSet.close();
             }
         } catch (Exception ex){
-            throw new RuntimeException("Erro ao fechar a conexão com o bando de dados", ex);
+            throw new RuntimeException("Erro ao fechar a conexï¿½o com o bando de dados", ex);
         }
     }
 }

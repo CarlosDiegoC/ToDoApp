@@ -30,7 +30,7 @@ public class TaskController {
             statement.setString(5, task.getNotes());
             statement.setDate(6, new Date(task.getDeadline().getTime()));
             statement.setDate(7, new Date(task.getCreatedAt().getTime()));
-            statement.setDate(7, new Date(task.getUpdatedAt().getTime()));
+            statement.setDate(8, new Date(task.getUpdatedAt().getTime()));
             statement.execute();
             
         }catch (Exception ex){
@@ -42,15 +42,15 @@ public class TaskController {
     }
     
     public void update(Task task){
-        String sql = "UPDATE tasks SET"
-                + "idProject = ?,"
-                + "name = ?,"
-                + "description = ?,"
-                + "notes = ?,"
-                + "completed = ?,"
-                + "deadline = ?,"              
-                + "createdAt = ?,"
-                + "updatedAt = ?"
+        String sql = "UPDATE tasks SET "
+                + "idProject = ?, "
+                + "name = ?, "
+                + "description = ?, "
+                + "notes = ?, "
+                + "completed = ?, "
+                + "deadline = ?, "
+                + "createdAt = ?, "
+                + "updatedAt = ? "
                 + "WHERE id = ?";
         
         Connection connection = null;

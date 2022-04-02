@@ -4,26 +4,48 @@
 package ToDoApp;
 
 import ToDoApp.Controllers.ProjectController;
+import ToDoApp.Controllers.TaskController;
 import ToDoApp.Models.Project;
+import ToDoApp.Models.Task;
 import ToDoApp.Util.ConnectionFactory;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         
-        ProjectController projectController = new ProjectController();
+        //ProjectController projectController = new ProjectController();
         
-        Project project = new Project();
-       
-        project.setId(1);
-        project.setName("Novo nome do Projeto");
-        project.setDescription("Descrição");
-        
-        projectController.update(project);
-        
-        List <Project> projects = projectController.getAll();
-        System.out.println("Total de projetos = " + projects.size());
+        //Project project = new Project();
+        //project.setName("Project One");
+        //project.setDescription("There is no description to this project.");
+        //projectController.save(project);
+
+        //List <Project> projects = projectController.getAll();
+        //System.out.println("Total de projetos = " + projects.size());
+
+        TaskController taskController = new TaskController();
+        Task task = new Task();
+        task.setId(2);
+        task.setIdProject(2);
+        task.setName("New name to this task");
+        task.setDescription("There is no description to this task.");
+        task.setNotes("There is no notes to this task.");
+        task.setIsCompleted(true);
+        task.setDeadline(new Date());
+        taskController.update(task);
+
+        taskController.removeById(3);
+
+
+
+
+        List<Task> tasks = taskController.getAll(2);
+        System.out.println("Total de tarefas = " + tasks.size());
+
+
     }
 }
